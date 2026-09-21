@@ -1,0 +1,126 @@
+export const trackAddToCart = (product) => {
+  if (window.gtag) {
+    window.gtag("event", "add_to_cart", {
+      currency: "INR",
+      value: product.price,
+      items: [
+        {
+          item_id: product.id,
+          item_name: product.name,
+          item_category: product.category,
+          price: product.price,
+          quantity: product.quantity || 1,
+        },
+      ],
+    });
+  }
+};
+
+export const trackWishlist = (product) => {
+  if (window.gtag) {
+    window.gtag("event", "add_to_wishlist", {
+      currency: "INR",
+      value: product.price,
+      items: [
+        {
+          item_id: product.id,
+          item_name: product.name,
+          item_category: product.category,
+          price: product.price,
+        },
+      ],
+    });
+  }
+};
+
+export const trackViewItem = (product) => {
+  if (window.gtag) {
+    window.gtag("event", "view_item", {
+      currency: "INR",
+      value: product.price,
+      items: [
+        {
+          item_id: product.id,
+          item_name: product.name,
+          item_category: product.category,
+          price: product.price,
+        },
+      ],
+    });
+  }
+};
+
+export const trackBeginCheckout = (value) => {
+  if (window.gtag) {
+    window.gtag("event", "begin_checkout", {
+      currency: "INR",
+      value,
+    });
+  }
+};
+
+export const trackPurchase = (value) => {
+  if (window.gtag) {
+    window.gtag("event", "purchase", {
+      transaction_id: "ORDER_" + Date.now(),
+      currency: "INR",
+      value,
+    });
+  }
+};
+
+export const trackSearch = (searchTerm) => {
+  if (window.gtag) {
+    window.gtag("event", "search", {
+      search_term: searchTerm,
+    });
+  }
+};
+
+export const trackCategoryFilter = (category) => {
+  if (window.gtag) {
+    window.gtag("event", "select_item", {
+      item_category: category,
+    });
+  }
+};
+
+export const trackViewCart = (totalPrice) => {
+  if (window.gtag) {
+    window.gtag("event", "view_cart", {
+      currency: "INR",
+      value: totalPrice,
+    });
+  }
+};
+
+export const trackRemoveFromCart = (product) => {
+  if (window.gtag) {
+    window.gtag("event", "remove_from_cart", {
+      currency: "INR",
+      value: product.price,
+      items: [
+        {
+          item_id: product.id,
+          item_name: product.name,
+          item_category: product.category,
+          price: product.price,
+        },
+      ],
+    });
+  }
+};
+
+export const trackViewItemList = (products) => {
+  if (window.gtag) {
+    window.gtag("event", "view_item_list", {
+      item_list_name: "Shop Products",
+      items: products.map((product) => ({
+        item_id: product.id,
+        item_name: product.name,
+        item_category: product.category,
+        price: product.price,
+      })),
+    });
+  }
+};
