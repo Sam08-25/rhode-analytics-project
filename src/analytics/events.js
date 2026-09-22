@@ -1,6 +1,7 @@
 export const trackAddToCart = (product) => {
   if (window.gtag) {
     window.gtag("event", "add_to_cart", {
+      debug_mode: true,
       currency: "INR",
       value: product.price,
       items: [
@@ -25,6 +26,7 @@ export const trackAddToCart = (product) => {
 export const trackWishlist = (product) => {
   if (window.gtag) {
     window.gtag("event", "add_to_wishlist", {
+      debug_mode: true,
       currency: "INR",
       value: product.price,
       items: [
@@ -48,6 +50,7 @@ export const trackWishlist = (product) => {
 export const trackViewItem = (product) => {
   if (window.gtag) {
     window.gtag("event", "view_item", {
+      debug_mode: true,
       currency: "INR",
       value: product.price,
       items: [
@@ -74,6 +77,7 @@ export const trackBeginCheckout = (
 ) => {
   if (window.gtag) {
     window.gtag("event", "begin_checkout", {
+      debug_mode: true,
       currency: "INR",
       value,
       items: items.map((item) => ({
@@ -101,6 +105,7 @@ export const trackPurchase = (
       "ORDER_" + Date.now();
 
     window.gtag("event", "purchase", {
+      debug_mode: true,
       transaction_id: transactionId,
       currency: "INR",
       value,
@@ -130,6 +135,7 @@ export const trackSearch = (
 ) => {
   if (window.gtag) {
     window.gtag("event", "search", {
+      debug_mode: true,
       search_term: searchTerm,
     });
 
@@ -145,6 +151,7 @@ export const trackCategoryFilter = (
 ) => {
   if (window.gtag) {
     window.gtag("event", "select_item", {
+      debug_mode: true,
       item_category: category,
     });
 
@@ -161,6 +168,7 @@ export const trackViewCart = (
 ) => {
   if (window.gtag) {
     window.gtag("event", "view_cart", {
+      debug_mode: true,
       currency: "INR",
       value: totalPrice,
       items: items.map((item) => ({
@@ -184,6 +192,7 @@ export const trackRemoveFromCart = (
 ) => {
   if (window.gtag) {
     window.gtag("event", "remove_from_cart", {
+      debug_mode: true,
       currency: "INR",
       value: product.price,
       items: [
@@ -211,6 +220,7 @@ export const trackViewItemList = (
 ) => {
   if (window.gtag) {
     window.gtag("event", "view_item_list", {
+      debug_mode: true,
       item_list_name: "Shop Products",
       items: products.map(
         (product) => ({
