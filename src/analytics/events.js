@@ -7,12 +7,18 @@ export const trackAddToCart = (product) => {
         {
           item_id: product.id,
           item_name: product.name,
-          item_category: product.category,
+          item_category:
+            product.category || "Product",
           price: product.price,
           quantity: product.quantity || 1,
         },
       ],
     });
+
+    console.log(
+      "Add To Cart Event Sent:",
+      product.name
+    );
   }
 };
 
@@ -25,11 +31,17 @@ export const trackWishlist = (product) => {
         {
           item_id: product.id,
           item_name: product.name,
-          item_category: product.category,
+          item_category:
+            product.category || "Product",
           price: product.price,
         },
       ],
     });
+
+    console.log(
+      "Wishlist Event Sent:",
+      product.name
+    );
   }
 };
 
@@ -42,15 +54,24 @@ export const trackViewItem = (product) => {
         {
           item_id: product.id,
           item_name: product.name,
-          item_category: product.category,
+          item_category:
+            product.category || "Product",
           price: product.price,
         },
       ],
     });
+
+    console.log(
+      "View Item Event Sent:",
+      product.name
+    );
   }
 };
 
-export const trackBeginCheckout = (value, items = []) => {
+export const trackBeginCheckout = (
+  value,
+  items = []
+) => {
   if (window.gtag) {
     window.gtag("event", "begin_checkout", {
       currency: "INR",
@@ -58,11 +79,16 @@ export const trackBeginCheckout = (value, items = []) => {
       items: items.map((item) => ({
         item_id: item.id,
         item_name: item.name,
-        item_category: item.category,
+        item_category:
+          item.category || "Product",
         price: item.price,
         quantity: item.quantity,
       })),
     });
+
+    console.log(
+      "Begin Checkout Event Sent"
+    );
   }
 };
 
@@ -71,7 +97,6 @@ export const trackPurchase = (
   items = []
 ) => {
   if (window.gtag) {
-
     const transactionId =
       "ORDER_" + Date.now();
 
@@ -93,22 +118,40 @@ export const trackPurchase = (
       "Purchase Event Sent:",
       transactionId
     );
+  } else {
+    console.log(
+      "GA4 not loaded - purchase not sent"
+    );
   }
 };
 
-export const trackSearch = (searchTerm) => {
+export const trackSearch = (
+  searchTerm
+) => {
   if (window.gtag) {
     window.gtag("event", "search", {
       search_term: searchTerm,
     });
+
+    console.log(
+      "Search Event Sent:",
+      searchTerm
+    );
   }
 };
 
-export const trackCategoryFilter = (category) => {
+export const trackCategoryFilter = (
+  category
+) => {
   if (window.gtag) {
     window.gtag("event", "select_item", {
       item_category: category,
     });
+
+    console.log(
+      "Category Filter Event Sent:",
+      category
+    );
   }
 };
 
@@ -123,15 +166,22 @@ export const trackViewCart = (
       items: items.map((item) => ({
         item_id: item.id,
         item_name: item.name,
-        item_category: item.category,
+        item_category:
+          item.category || "Product",
         price: item.price,
         quantity: item.quantity,
       })),
     });
+
+    console.log(
+      "View Cart Event Sent"
+    );
   }
 };
 
-export const trackRemoveFromCart = (product) => {
+export const trackRemoveFromCart = (
+  product
+) => {
   if (window.gtag) {
     window.gtag("event", "remove_from_cart", {
       currency: "INR",
@@ -140,25 +190,42 @@ export const trackRemoveFromCart = (product) => {
         {
           item_id: product.id,
           item_name: product.name,
-          item_category: product.category,
+          item_category:
+            product.category || "Product",
           price: product.price,
-          quantity: product.quantity || 1,
+          quantity:
+            product.quantity || 1,
         },
       ],
     });
+
+    console.log(
+      "Remove From Cart Event Sent:",
+      product.name
+    );
   }
 };
 
-export const trackViewItemList = (products) => {
+export const trackViewItemList = (
+  products
+) => {
   if (window.gtag) {
     window.gtag("event", "view_item_list", {
       item_list_name: "Shop Products",
-      items: products.map((product) => ({
-        item_id: product.id,
-        item_name: product.name,
-        item_category: product.category,
-        price: product.price,
-      })),
+      items: products.map(
+        (product) => ({
+          item_id: product.id,
+          item_name: product.name,
+          item_category:
+            product.category ||
+            "Product",
+          price: product.price,
+        })
+      ),
     });
+
+    console.log(
+      "View Item List Event Sent"
+    );
   }
 };

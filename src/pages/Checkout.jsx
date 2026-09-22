@@ -75,27 +75,25 @@ function Checkout() {
   };
 
   const placeOrder = () => {
-  if (cartItems.length === 0) {
-    alert("Your cart is empty");
-    return;
-  }
+    if (cartItems.length === 0) {
+      alert("Your cart is empty");
+      return;
+    }
 
-  if (!validateForm()) {
-    return;
-  }
+    if (!validateForm()) {
+      return;
+    }
 
-  // Send purchase event
-  trackPurchase(
-    totalPrice + 99,
-    cartItems
-  );
+    trackPurchase(
+      totalPrice + 99,
+      cartItems
+    );
 
-  // Give GA4 time to send event before navigation
-  setTimeout(() => {
-    clearCart();
-    navigate("/order-success");
-  }, 1000);
-};
+    setTimeout(() => {
+      clearCart();
+      navigate("/order-success");
+    }, 1500);
+  };
 
   return (
     <div className="max-w-7xl mx-auto px-8 py-16 min-h-screen">
