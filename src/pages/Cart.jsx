@@ -19,7 +19,10 @@ function Cart() {
 
   useEffect(() => {
     if (cartItems.length > 0) {
-      trackViewCart(totalPrice);
+      trackViewCart(
+        totalPrice,
+        cartItems
+      );
     }
   }, [cartItems, totalPrice]);
 

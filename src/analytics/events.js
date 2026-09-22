@@ -50,21 +50,38 @@ export const trackViewItem = (product) => {
   }
 };
 
-export const trackBeginCheckout = (value) => {
+export const trackBeginCheckout = (value, items = []) => {
   if (window.gtag) {
     window.gtag("event", "begin_checkout", {
       currency: "INR",
       value,
+      items: items.map((item) => ({
+        item_id: item.id,
+        item_name: item.name,
+        item_category: item.category,
+        price: item.price,
+        quantity: item.quantity,
+      })),
     });
   }
 };
 
-export const trackPurchase = (value) => {
+export const trackPurchase = (
+  value,
+  items = []
+) => {
   if (window.gtag) {
     window.gtag("event", "purchase", {
       transaction_id: "ORDER_" + Date.now(),
       currency: "INR",
       value,
+      items: items.map((item) => ({
+        item_id: item.id,
+        item_name: item.name,
+        item_category: item.category,
+        price: item.price,
+        quantity: item.quantity,
+      })),
     });
   }
 };
@@ -85,11 +102,21 @@ export const trackCategoryFilter = (category) => {
   }
 };
 
-export const trackViewCart = (totalPrice) => {
+export const trackViewCart = (
+  totalPrice,
+  items = []
+) => {
   if (window.gtag) {
     window.gtag("event", "view_cart", {
       currency: "INR",
       value: totalPrice,
+      items: items.map((item) => ({
+        item_id: item.id,
+        item_name: item.name,
+        item_category: item.category,
+        price: item.price,
+        quantity: item.quantity,
+      })),
     });
   }
 };
@@ -105,6 +132,7 @@ export const trackRemoveFromCart = (product) => {
           item_name: product.name,
           item_category: product.category,
           price: product.price,
+          quantity: product.quantity || 1,
         },
       ],
     });

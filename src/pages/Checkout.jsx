@@ -28,28 +28,28 @@ function Checkout() {
 
   useEffect(() => {
     if (cartItems.length > 0) {
-      trackBeginCheckout(totalPrice + 99);
+      trackBeginCheckout(
+        totalPrice + 99,
+        cartItems
+      );
     }
-  }, []);
+  }, [cartItems, totalPrice]);
 
   const validateForm = () => {
     let newErrors = {};
 
     if (!customer.name.trim()) {
-      newErrors.name =
-        "Full Name is required";
+      newErrors.name = "Full Name is required";
     }
 
     if (!customer.email.trim()) {
-      newErrors.email =
-        "Email is required";
+      newErrors.email = "Email is required";
     } else if (
       !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(
         customer.email
       )
     ) {
-      newErrors.email =
-        "Enter a valid email";
+      newErrors.email = "Enter a valid email";
     }
 
     if (!customer.phone.trim()) {
@@ -84,7 +84,10 @@ function Checkout() {
       return;
     }
 
-    trackPurchase(totalPrice + 99);
+    trackPurchase(
+      totalPrice + 99,
+      cartItems
+    );
 
     clearCart();
 
@@ -99,8 +102,6 @@ function Checkout() {
       </h1>
 
       <div className="grid md:grid-cols-2 gap-10">
-
-        {/* Customer Details */}
 
         <div className="bg-white p-8 rounded-3xl shadow-sm">
 
@@ -201,8 +202,6 @@ function Checkout() {
           )}
 
         </div>
-
-        {/* Order Summary */}
 
         <div className="bg-white p-8 rounded-3xl shadow-sm">
 
