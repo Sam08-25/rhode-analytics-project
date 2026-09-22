@@ -71,18 +71,28 @@ export const trackPurchase = (
   items = []
 ) => {
   if (window.gtag) {
+
+    const transactionId =
+      "ORDER_" + Date.now();
+
     window.gtag("event", "purchase", {
-      transaction_id: "ORDER_" + Date.now(),
+      transaction_id: transactionId,
       currency: "INR",
       value,
       items: items.map((item) => ({
         item_id: item.id,
         item_name: item.name,
-        item_category: item.category,
+        item_category:
+          item.category || "Product",
         price: item.price,
         quantity: item.quantity,
       })),
     });
+
+    console.log(
+      "Purchase Event Sent:",
+      transactionId
+    );
   }
 };
 
