@@ -31,8 +31,8 @@ function ProductDetail() {
 
   if (!product) {
     return (
-      <div className="max-w-7xl mx-auto px-8 py-20">
-        <h1 className="text-4xl">
+      <div className="max-w-7xl mx-auto px-6 py-20">
+        <h1 className="text-3xl md:text-4xl">
           Product Not Found
         </h1>
       </div>
@@ -44,7 +44,7 @@ function ProductDetail() {
 
     trackAddToCart({
       ...product,
-      quantity: quantity,
+      quantity,
       price: product.price * quantity,
     });
 
@@ -64,9 +64,9 @@ function ProductDetail() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-8 py-16">
+    <div className="max-w-7xl mx-auto px-6 md:px-8 py-10 md:py-16">
 
-      <div className="grid md:grid-cols-2 gap-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
 
         <div>
           <img
@@ -82,15 +82,15 @@ function ProductDetail() {
             {product.category}
           </p>
 
-          <h1 className="text-5xl font-serif mb-4">
+          <h1 className="text-3xl md:text-5xl font-serif mb-4">
             {product.name}
           </h1>
 
-          <p className="text-3xl mb-4">
+          <p className="text-2xl md:text-3xl mb-4">
             ₹{product.price}
           </p>
 
-          <div className="flex items-center gap-3 mb-6">
+          <div className="flex flex-wrap items-center gap-3 mb-6">
 
             <span className="text-yellow-500">
               ⭐
@@ -106,7 +106,7 @@ function ProductDetail() {
 
           </div>
 
-          <p className="text-gray-600 leading-8 mb-8">
+          <p className="text-gray-600 leading-7 md:leading-8 mb-8">
             {product.description}
           </p>
 
@@ -146,18 +146,18 @@ function ProductDetail() {
             </p>
           </div>
 
-          <div className="flex gap-4">
+          <div className="flex flex-col sm:flex-row gap-4">
 
             <button
               onClick={handleAddToCart}
-              className="bg-black text-white px-10 py-4 rounded-full hover:opacity-90"
+              className="w-full sm:w-auto bg-black text-white px-10 py-4 rounded-full hover:opacity-90"
             >
               Add To Cart
             </button>
 
             <button
               onClick={handleWishlist}
-              className="border border-black px-10 py-4 rounded-full hover:bg-black hover:text-white"
+              className="w-full sm:w-auto border border-black px-10 py-4 rounded-full hover:bg-black hover:text-white"
             >
               Wishlist
             </button>

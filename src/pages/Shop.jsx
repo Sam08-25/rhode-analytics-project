@@ -34,9 +34,9 @@ function Shop() {
   });
 
   return (
-    <div className="max-w-7xl mx-auto px-8 py-16">
+    <div className="max-w-7xl mx-auto px-6 md:px-8 py-10 md:py-16">
 
-      <h1 className="text-6xl font-serif mb-10">
+      <h1 className="text-4xl md:text-6xl font-serif mb-10">
         Shop
       </h1>
 
@@ -52,7 +52,7 @@ function Shop() {
         />
       </div>
 
-      <div className="flex flex-wrap gap-4 mb-10">
+      <div className="flex flex-wrap gap-3 md:gap-4 mb-10">
 
         <button
           onClick={() =>
@@ -108,7 +108,7 @@ function Shop() {
 
       </div>
 
-      <div className="grid md:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
 
         {filteredProducts.map((product) => (
           <div
@@ -121,7 +121,7 @@ function Shop() {
               <img
                 src={product.image}
                 alt={product.name}
-                className="w-full h-[350px] object-cover"
+                className="w-full h-[280px] md:h-[350px] object-cover"
               />
 
             </Link>
@@ -149,7 +149,7 @@ function Shop() {
               </div>
 
               <Link to={`/product/${product.id}`}>
-                <button className="mt-5 w-full bg-black text-white py-3 rounded-full">
+                <button className="mt-5 w-full bg-black text-white py-3 rounded-full hover:opacity-90">
                   View Product
                 </button>
               </Link>

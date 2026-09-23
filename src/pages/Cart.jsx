@@ -31,19 +31,20 @@ function Cart() {
     removeFromCart(item.id);
   };
 
-  const shipping = cartItems.length > 0 ? 99 : 0;
+  const shipping =
+    cartItems.length > 0 ? 99 : 0;
 
   return (
-    <div className="max-w-7xl mx-auto px-8 py-16 min-h-screen">
+    <div className="max-w-7xl mx-auto px-6 md:px-8 py-10 md:py-16 min-h-screen">
 
-      <h1 className="text-5xl font-serif mb-10">
+      <h1 className="text-3xl md:text-5xl font-serif mb-10">
         Shopping Cart
       </h1>
 
       {cartItems.length === 0 ? (
-        <div className="bg-white p-10 rounded-3xl">
+        <div className="bg-white p-8 md:p-10 rounded-3xl">
 
-          <h2 className="text-2xl mb-5">
+          <h2 className="text-xl md:text-2xl mb-5">
             Your cart is empty
           </h2>
 
@@ -61,18 +62,18 @@ function Cart() {
             {cartItems.map((item) => (
               <div
                 key={item.id}
-                className="bg-white p-6 rounded-3xl flex gap-6 items-center"
+                className="bg-white p-5 md:p-6 rounded-3xl flex flex-col md:flex-row gap-6"
               >
 
                 <img
                   src={item.image}
                   alt={item.name}
-                  className="w-32 h-32 object-cover rounded-2xl"
+                  className="w-full md:w-32 h-64 md:h-32 object-cover rounded-2xl"
                 />
 
                 <div className="flex-1">
 
-                  <h2 className="text-2xl">
+                  <h2 className="text-xl md:text-2xl">
                     {item.name}
                   </h2>
 
@@ -82,14 +83,17 @@ function Cart() {
 
                   <p className="font-medium mt-2">
                     Item Total: ₹
-                    {item.price * item.quantity}
+                    {item.price *
+                      item.quantity}
                   </p>
 
                   <div className="flex items-center gap-4 mt-4">
 
                     <button
                       onClick={() =>
-                        decreaseQuantity(item.id)
+                        decreaseQuantity(
+                          item.id
+                        )
                       }
                       className="bg-black text-white px-3 py-1 rounded-full"
                     >
@@ -102,7 +106,9 @@ function Cart() {
 
                     <button
                       onClick={() =>
-                        increaseQuantity(item.id)
+                        increaseQuantity(
+                          item.id
+                        )
                       }
                       className="bg-black text-white px-3 py-1 rounded-full"
                     >
@@ -114,8 +120,10 @@ function Cart() {
                 </div>
 
                 <button
-                  onClick={() => handleRemove(item)}
-                  className="text-red-500"
+                  onClick={() =>
+                    handleRemove(item)
+                  }
+                  className="text-red-500 md:self-start"
                 >
                   Remove
                 </button>
@@ -125,9 +133,9 @@ function Cart() {
 
           </div>
 
-          <div className="bg-white mt-10 p-8 rounded-3xl">
+          <div className="bg-white mt-10 p-6 md:p-8 rounded-3xl">
 
-            <h2 className="text-3xl mb-6">
+            <h2 className="text-2xl md:text-3xl mb-6">
               Order Summary
             </h2>
 
@@ -141,7 +149,7 @@ function Cart() {
               <span>₹{shipping}</span>
             </div>
 
-            <div className="flex justify-between text-2xl font-semibold border-t pt-4 mt-4">
+            <div className="flex justify-between text-xl md:text-2xl font-semibold border-t pt-4 mt-4">
               <span>Total</span>
               <span>
                 ₹{totalPrice + shipping}
